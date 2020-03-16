@@ -46,6 +46,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include <string.h>
+#include "LogFile.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -110,7 +111,8 @@ int main(void)
   MX_GPIO_Init();
   MX_LPUART1_UART_Init();
   /* USER CODE BEGIN 2 */
-	HAL_UART_Transmit(&hlpuart1,(uint8_t *)"Hello word\r\n",strlen("Hello word\r\n"),1000);
+  //HAL_UART_Transmit(&hlpuart1,(uint8_t *)"Hello word\r\n",strlen("Hello word\r\n"),1000);
+  LOG_INFO("Helloword");
   /* USER CODE END 2 */
 
   /* Infinite loop */
