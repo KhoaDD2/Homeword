@@ -39,11 +39,11 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "stm32l4xx_hal.h"
-#include "stdio.h"
-#include "string.h"
+
 
 /* USER CODE BEGIN Includes */
-
+#include <string.h>
+#include "LogFile.h"
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
@@ -51,8 +51,8 @@ UART_HandleTypeDef hlpuart1;
 
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
-HAL_StatusTypeDef transmitStatus;
-char* p_TransmitStr = "HelloWord\n";
+//HAL_StatusTypeDef transmitStatus;
+//char* p_TransmitStr = "HelloWord\r\n";
 
 /* USER CODE END PV */
 
@@ -101,6 +101,19 @@ int main(void)
   MX_GPIO_Init();
   MX_LPUART1_UART_Init();
   /* USER CODE BEGIN 2 */
+	LOG_INFO("Helloword");
+	if (DEBUG)
+	{
+			do
+			{
+				LOG_ERROR("Error Log");
+			}
+			while(1);
+	}
+	else
+	{
+			__NVIC_SystemReset();
+	}
 	
   /* USER CODE END 2 */
 
@@ -110,14 +123,11 @@ int main(void)
   {
 
   /* USER CODE END WHILE */
-	transmitStatus = HAL_UART_Transmit(&hlpuart1, (uint8_t*) p_TransmitStr,strlen(p_TransmitStr) , 1000);
-	for(uint16_t idx = 0; idx  <1000; idx++)
-	{
-	}
+	
 	
   /* USER CODE BEGIN 3 */
-			  
-				
+	//transmitStatus = HAL_UART_Transmit(&hlpuart1, (uint8_t*) p_TransmitStr,strlen(p_TransmitStr) , 1000); 
+					
 				
   }
   /* USER CODE END 3 */

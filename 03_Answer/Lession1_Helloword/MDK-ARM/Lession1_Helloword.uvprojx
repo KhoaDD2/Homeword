@@ -530,6 +530,31 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>Util/Log</GroupName>
+          <Files>
+            <File>
+              <FileName>LogFile.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Src\LogFile.h</FilePath>
+            </File>
+            <File>
+              <FileName>LogFile.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\LogFile.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>User/Config</GroupName>
+          <Files>
+            <File>
+              <FileName>UserConfig.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Inc\UserConfig.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>::CMSIS</GroupName>
         </Group>
       </Groups>
