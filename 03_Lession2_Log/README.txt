@@ -43,3 +43,5 @@ Bài 2:  Với log error, anh muốn nếu như cờ DEBUG bật thì em treo lu
 		Nếu cờ DEBUG tắt thì em reset chương trình 
 		
 Tạm thời 2 bài nhé, anh phần bổ thời gian kém nên ra bài chậm, sẽ tiến bộ. Yêu em.
+
+Anh đã update đáp án, em xem file diff nhé. <3 em 

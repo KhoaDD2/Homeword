@@ -16,7 +16,15 @@ extern "C" {
 #define LOGD(xx_fmt,...) if(DEBUG) printf("[D]" xx_fmt,##__VA_ARGS__)
 #define LOGI(xx_fmt,...) printf("[I]" xx_fmt "\r\n",##__VA_ARGS__)
 #define LOGW(xx_fmt,...) printf("[W]" xx_fmt "\r\n",##__VA_ARGS__)
-#define LOGE(xx_fmt,...) printf("[E]" xx_fmt "\r\n",##__VA_ARGS__)
+#define LOGE(xx_fmt,...) \
+{ \
+	printf("[E]" xx_fmt "\r\n",##__VA_ARGS__); \
+	if(DEBUG){ \
+		NVIC_SystemReset(); \
+	} else { \
+		while(1){}; \
+	}; \
+}
 #define LOGF(xx_fmt,...) printf("[F]" xx_fmt "\r\n",##__VA_ARGS__)
 
 #define ENABLE_LOG_MSG_LOW               1
@@ -57,7 +65,7 @@ extern "C" {
 
 #undef APPS_LOG
 #define APPS_LOG(xx_prio, xx_fmt, ...) \
-  APPS_RAW(xx_prio, xx_fmt , ##__VA_ARGS__)
+APPS_RAW(xx_prio,"[%s:%03i]:" xx_fmt ,__FILENAME__,__LINE__,##__VA_ARGS__)
 
 #ifdef LOG_ON
     #ifdef APPS_RAW
