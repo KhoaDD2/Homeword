@@ -67,7 +67,7 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-
+uint8_t recieveData[16];
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -112,7 +112,7 @@ int main(void)
   MX_LPUART1_UART_Init();
   /* USER CODE BEGIN 2 */
   //HAL_UART_Transmit(&hlpuart1,(uint8_t *)"Hello word\r\n",strlen("Hello word\r\n"),1000);
-  LOG_INFO("Helloword");
+  LOG_INFO("Hello word");
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -120,7 +120,10 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-	LOG_ERROR("Critical issuee !!!!");
+	if(HAL_UART_Receive(&hlpuart1,recieveData,1,1000) == HAL_OK){
+		LOG_INFO("R:%c",recieveData[0]);
+	} else {
+	}
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
