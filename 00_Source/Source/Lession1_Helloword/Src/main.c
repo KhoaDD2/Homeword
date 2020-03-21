@@ -68,6 +68,8 @@
 
 /* USER CODE BEGIN PV */
 uint8_t recieveData[16];
+uint8_t bufferData[256];
+uint8_t *pData = &bufferData[0];
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -78,7 +80,22 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+static int inputProccess(char input){
+	int ret = 0;
+	if( input=='\r'){
+		
+	} else if ( input=='\n' && strlen((const char *)bufferData)>0){
+		pData[0] = '\0';
+		pData = &bufferData[0];
+		LOG_INFO("Data : %s", pData);
+	} else if (pData <= &bufferData[255]){
+		pData[0] = input;
+		pData++;
+	} else {
+		ret = -1;
+	}
+	return ret;
+}
 /* USER CODE END 0 */
 
 /**
@@ -121,7 +138,8 @@ int main(void)
   {
     /* USER CODE END WHILE */
 	if(HAL_UART_Receive(&hlpuart1,recieveData,1,1000) == HAL_OK){
-		LOG_INFO("R:%c",recieveData[0]);
+		// LOG_INFO("R:%c",recieveData[0]);
+		inputProccess(recieveData[0]);
 	} else {
 	}
     /* USER CODE BEGIN 3 */
