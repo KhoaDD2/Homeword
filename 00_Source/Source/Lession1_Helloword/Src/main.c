@@ -40,6 +40,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "cmsis_os.h"
 #include "usart.h"
 #include "gpio.h"
 
@@ -67,35 +68,19 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-uint8_t recieveData[16];
-uint8_t bufferData[256];
-uint8_t *pData = &bufferData[0];
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
+void MX_FREERTOS_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-static int inputProccess(char input){
-	int ret = 0;
-	if( input=='\r'){
-		
-	} else if ( input=='\n' && strlen((const char *)bufferData)>0){
-		pData[0] = '\0';
-		pData = &bufferData[0];
-		LOG_INFO("Data : %s", pData);
-	} else if (pData <= &bufferData[255]){
-		pData[0] = input;
-		pData++;
-	} else {
-		ret = -1;
-	}
-	return ret;
-}
+
 /* USER CODE END 0 */
 
 /**
@@ -128,20 +113,22 @@ int main(void)
   MX_GPIO_Init();
   MX_LPUART1_UART_Init();
   /* USER CODE BEGIN 2 */
-  //HAL_UART_Transmit(&hlpuart1,(uint8_t *)"Hello word\r\n",strlen("Hello word\r\n"),1000);
-  LOG_INFO("Hello word");
   /* USER CODE END 2 */
+
+  /* Call init function for freertos objects (in freertos.c) */
+  MX_FREERTOS_Init();
+
+  /* Start scheduler */
+  osKernelStart();
+  
+  /* We should never get here as control is now taken by the scheduler */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
     /* USER CODE END WHILE */
-	if(HAL_UART_Receive(&hlpuart1,recieveData,1,1000) == HAL_OK){
-		// LOG_INFO("R:%c",recieveData[0]);
-		inputProccess(recieveData[0]);
-	} else {
-	}
+
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
