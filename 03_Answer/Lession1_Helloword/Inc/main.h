@@ -88,7 +88,9 @@
 /* #define USE_FULL_ASSERT    1U */
 
 /* USER CODE BEGIN Private defines */
-
+/* Size of Reception buffer */
+#define RXBUFFERSIZE         1
+#define STOREDRXBUFSIZE      1024
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus

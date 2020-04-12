@@ -728,7 +728,7 @@ ARM Macro Assembler    Page 12
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M4.fp --apcs=int
 erwork --depend=lession1_helloword\startup_stm32l4r5xx.d -olession1_helloword\s
 tartup_stm32l4r5xx.o -I.\RTE\_Lession1_Helloword -IC:\Users\Embedded_Laptop\App
-Data\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\Core\Include -IC:\Users\Embedded_Lap
+Data\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include -IC:\Users\Embedded_Lap
 top\AppData\Local\Arm\Packs\Keil\STM32L4xx_DFP\2.2.0\Drivers\CMSIS\Device\ST\ST
 M32L4xx\Include --predefine="__MICROLIB SETA 1" --predefine="__UVISION_VERSION 
 SETA 527" --predefine="_RTE_ SETA 1" --predefine="STM32L4R5xx SETA 1" --list=st

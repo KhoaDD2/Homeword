@@ -48,6 +48,7 @@
 /* Exported functions ------------------------------------------------------- */
 
 void SysTick_Handler(void);
+void LPUART1_IRQHandler(void);
 
 #ifdef __cplusplus
 }
